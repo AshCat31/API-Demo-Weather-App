@@ -1,0 +1,3 @@
+weather (and flood and soil): openmeteo
+convert addr to openmeteo-accepted format: US Census Geocoder
+govt alerts: National Weather Service API
