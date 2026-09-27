@@ -1,0 +1,13 @@
+# API
+API is public, CORS enabled, and on the provided list
+(extra credit) second API
+
+# docs
+wireframes, page plans, other docs
+
+# routes
+- API: tbd
+- back/frontend: tbd
+
+# backend
+express.js, ejs (api resp passed thru), axios for http req
