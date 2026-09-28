@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Website</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>Blog Website</h1>
+    </header>
+    <main class="page">
+        <section class="posts">
+            <% posts.forEach((post, index) => { %>
+                <article class="post">
+                    <div class="post-header">
+                        <h2 class="post-title"><%= post.title %></h2>
+                        <% if (post.category) { %>
+                            <span class="category"><%= post.category %></span>
+                        <% } %>
+                        <div class="post-actions">
+                            <button type="button" onclick='editPost(<%= index %>, <%- JSON.stringify(post) %>)' title="Edit">Edit</button>
+                            <form action="/posts/<%= index %>/delete" method="POST">
+                                <button class="delete" type="submit" title="Delete">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="post-info">
+                        <span><%= post.name %></span>
+                        <span><%= post.date.toLocaleDateString() %></span>
+                    </div>
+                    <div class="post-content"><%= post.content %></div>
+                </article>
+            <% }) %>
+        </section>
+        <button class="create-post" type="button" onclick="openCreateModal()">Create Post</button>
+    </main>
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <form id="postForm" action="/posts" method="POST">
+                <input type="text" id="title" name="title" placeholder="Title" required>
+                <input type="text" id="author" name="name" placeholder="Author" required>
+                <select id="category" name="category">
+                    <option value="" disabled selected>Category (optional)</option>
+                    <option value="Technology">Technology</option>
+                    <option value="Travel">Travel</option>
+                    <option value="Food">Food</option>
+                    <option value="Sports">Sports</option>
+                </select>
+                <textarea id="content" name="content" placeholder="Content..." required></textarea>
+                <div class="modal-footer">
+                    <button type="button" onclick="closeModal()">Cancel</button>
+                    <button type="submit">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script> const modalOverlay = document.getElementById("modalOverlay");
+        const postForm = document.getElementById("postForm");
+        const titleInput = document.getElementById("title");
+        const authorInput = document.getElementById("author");
+        const categoryInput = document.getElementById("category");
+        const contentInput = document.getElementById("content");
+        function openCreateModal() {
+            postForm.action = "/posts";
+            postForm.reset();
+            openModal();
+        } function openModal() {
+            modalOverlay.classList.add("open");
+            titleInput.focus();
+        } function closeModal() {
+            modalOverlay.classList.remove("open");
+        } function editPost(index, post) {
+            postForm.action = `/posts/${index}/edit`;
+            titleInput.value = post.title;
+            authorInput.value = post.name;
+            categoryInput.value = post.category || "";
+            contentInput.value = post.content;
+            openModal();
+        } modalOverlay.addEventListener("click", function (event) {
+            if (event.target === modalOverlay) closeModal();
+        });
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "Escape") closeModal();
+        });
+    </script>
+</body>
+
+</html>

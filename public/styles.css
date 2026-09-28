@@ -1,0 +1,241 @@
+:root { 
+    --font-family: sans-serif; 
+    --font-color: #39316b; 
+    --body-background: #eaf8fc; 
+    --white: #ffffff; 
+    --primary: #a5e5f8; 
+    --primary-dark: #73cde5; 
+    --primary-hover: #8ddcf1; 
+    --secondary: #ad9df1; 
+    --secondary-dark: #8e7ddd; 
+    --secondary-hover: #c1b5f4; 
+    --light: #f4fbfd; 
+    --border-color: #6e6594; 
+    --border-light: #b8b2cc; 
+    --border-dark: #39316b; 
+    --border-width: 2px; 
+    --border-radius: 12px; 
+    --outline-color: #6d5fb0; 
+    --delete: #e45f6a; 
+    --delete-hover: #d94d59; 
+    --delete-text: #fff; 
+    --header-font-size: 26px; 
+    --title-font-size: 26px; 
+    --body-font-size: 16px; 
+    --button-font-size: 15px; 
+    --category-font-size: 14px; 
+    --page-padding: 28px; 
+    --post-padding: 20px; 
+    --content-padding: 20px 18px; 
+    --button-padding: 11px 18px; 
+    --gap: 24px; 
+} 
+* { 
+    box-sizing: border-box; 
+    border-radius: var(--border-radius); 
+} 
+body { 
+    margin: 0; 
+    font-family: var(--font-family); 
+    color: var(--font-color); 
+    background: var(--body-background); 
+    font-size: var(--body-font-size); 
+} 
+header { 
+    height: 58px; 
+    display: flex; 
+    align-items: center; 
+    padding: 0 28px; 
+    background: var(--primary); 
+    border-bottom: 4px solid var(--border-dark); 
+    border-radius: 0;
+} 
+header h1 { 
+    margin: 0; 
+    font-size: var(--header-font-size); 
+    font-weight: 400; 
+} 
+.page { 
+    display: flex; 
+    align-items: flex-start; 
+    gap: var(--gap); 
+    width: 100%; 
+    padding: var(--page-padding); 
+} 
+.posts { 
+    flex: 1; 
+} 
+.create-post { 
+    flex-shrink: 0; 
+    font-size: 20px; 
+    font-weight: 400; 
+    padding: var(--button-padding); 
+    background: var(--secondary); 
+    color: var(--font-color); 
+    border: 3px solid var(--border-dark); 
+    border-radius: 16px; 
+} 
+.create-post:hover { 
+    background: var(--secondary-hover); 
+} 
+.post { 
+    margin-bottom: 24px; 
+    border: var(--border-width) solid var(--border-color); 
+    border-left: 7px solid var(--secondary-dark); 
+    padding: var(--post-padding); 
+    background: var(--white); 
+} 
+.post-header { 
+    display: flex; 
+    align-items: center; 
+    height: max-content; 
+    padding: 2px 2px 14px; 
+} 
+.post-title { 
+    margin: 0; 
+    font-size: var(--title-font-size); 
+    font-weight: 400; 
+} 
+.category { 
+    margin-left: 16px; 
+    padding: 7px 12px; 
+    font-size: var(--category-font-size); 
+    background: var(--primary); 
+    color: var(--font-color); 
+    border: var(--border-width) solid var(--primary-dark); 
+    border-radius: 18px; 
+} 
+.post-actions { 
+    display: flex; 
+    gap: 10px; 
+    margin-left: auto; 
+} 
+.post-actions form { 
+    margin: 0; 
+} 
+button { 
+    cursor: pointer; 
+    font-family: var(--font-family); 
+} 
+button.delete { 
+    background-color: var(--delete) !important; 
+    color: var(--delete-text); 
+    border-color: var(--delete-hover) !important; 
+} 
+button.delete:hover { 
+    background-color: var(--delete-hover) !important; 
+} 
+.post-actions button { 
+    width: 64px; 
+    height: 36px; 
+    padding: 0; 
+    background: var(--white); 
+    color: var(--font-color); 
+    border: var(--border-width) solid var(--border-color); 
+    border-radius: 10px; 
+    font-size: var(--button-font-size); 
+} 
+.post-actions button:hover { 
+    background: var(--secondary); 
+} 
+.post-info { 
+    display: flex; 
+    gap: 24px; 
+    margin-top: 4px; 
+    padding: 0 2px; 
+    font-size: 14px; 
+    color: #62598b; 
+} 
+.post-content { 
+    margin: 16px 0 0; 
+    padding: var(--content-padding); 
+    background: var(--light); 
+    border: var(--border-width) solid #d0e9ef; 
+    border-left: 5px solid var(--primary-dark); 
+    border-radius: 10px; 
+    font-size: var(--body-font-size); 
+    color: var(--font-color); 
+} 
+.modal-overlay { 
+    position: fixed; 
+    inset: 0; 
+    display: none; 
+    align-items: center; 
+    justify-content: center; 
+    padding: 24px; 
+    background: rgba(57, 49, 107, 0.35); 
+    z-index: 999999; 
+} 
+.modal-overlay.open { 
+    display: flex; 
+} 
+.modal { 
+    width: 745px; 
+    padding: 22px; 
+    background: var(--white); 
+    border: 3px solid var(--border-dark); 
+    border-radius: 16px; 
+    box-shadow: 5px 5px 0 rgba(57, 49, 107, 0.2); 
+} 
+.modal input, 
+.modal select, 
+.modal textarea { 
+    display: block; 
+    width: 100%; 
+    margin: 0 0 10px; 
+    padding: 0 12px; 
+    background: var(--light); 
+    color: var(--font-color); 
+    border: var(--border-width) solid var(--border-light); 
+    border-radius: 9px; 
+    font-family: var(--font-family); 
+    font-size: var(--body-font-size); 
+} 
+.modal input, 
+.modal select { 
+    height: 38px; 
+} 
+.modal textarea { 
+    height: 250px; 
+    resize: none; /* handle appers if not present */ 
+} 
+.modal input:focus, 
+.modal select:focus, 
+.modal textarea:focus { 
+    outline: 2px solid var(--outline-color); 
+    outline-offset: 2px; 
+    border-color: var(--outline-color); 
+} 
+.modal-footer { 
+    display: flex; 
+    justify-content: flex-end; 
+    gap: 10px; 
+    margin-top: 14px; 
+    padding-top: 4px; 
+} 
+.modal-footer button { 
+    min-width: 85px; 
+    height: 39px; 
+    background: var(--white); 
+    color: var(--font-color); 
+    border: var(--border-width) solid var(--border-color); 
+    border-radius: 10px; 
+    font-size: var(--button-font-size); 
+} 
+.modal-footer button:hover { 
+    background: var(--secondary-hover); 
+} 
+/* roughly ipad size */ 
+@media (max-width: 1000px) { 
+    /* so far just moves create post to top */ 
+    .page { 
+        flex-direction: column; 
+    } 
+    .posts { 
+        width: 100%; 
+    } 
+    .create-post { 
+        order: -1; /* needed to move to top */ 
+        align-self: flex-start; 
+    } 
+} 
