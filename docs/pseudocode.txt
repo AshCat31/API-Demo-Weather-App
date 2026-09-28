@@ -1,0 +1,29 @@
+//basic structure of core funcs
+
+
+func main: //more async stuff
+ //triggered by user submitting their addr
+ lat,long=fetchLatLong(stNum,stName,city,state)
+
+
+func fetchLatLong(stNum,stName,city,state)
+ lat,long=fetchGeocode(stNum,stName,city,state)//async again
+ sections=buildBlocks(lat,long)
+ renderSections(sections)
+
+
+
+func buildBlocks(lat,long):
+ data=fetchAPI(lat,long)//prolly async/await. always fetch ALL data even if user didnt have enabled in case they do enable it after
+ sections=extractSections(data)//dict of arr of dict: {section:[{label:label1,value:val1},{...}],section2:[{...}]} sections are weather,solar,soil,alerts
+ //pass for rendering to EJS; each section is a large block w header `section` and dynamically filled grid of sub blocks w header `label` and contant `value`
+
+
+
+
+func fetchAPI(lat,long):
+//either handle caching here or in specific api funcs
+ openmeteo_WeatherSolar=fetchOpenmeteoWeatherSolar(lat,long)//again, async. pre- and postprocessing unique to api happens here
+ openmeteo_Soil=fetchOpenmeteoSoil=fetchOpenmeteoSoil(lat,long)
+ nws_Alerts=fetchNwsAlerts(lat,long)
+ data=openmeteo_WeatherSolar+openmeteo_Soil+nws_Alerts

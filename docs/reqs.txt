@@ -1,3 +1,4 @@
+//reqs.txt
 # API
 API is public, CORS enabled, and on the provided list
 (extra credit) second API
@@ -11,3 +12,10 @@ wireframes, page plans, other docs
 
 # backend
 express.js, ejs (api resp passed thru), axios for http req
+prolly want caching, prolly json or in-mem, prolly simple caching
+
+# page(s)
+single page should work with form and ejs for dynamic rendering. alternatively could encode lat+long in url for bookmarking etc but leaning away
+
+# styling
+again, look good on desktop and mobile, prolly no bootstrap just lots of vars
