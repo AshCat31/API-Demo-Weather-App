@@ -1,241 +1,287 @@
-:root { 
-    --font-family: sans-serif; 
-    --font-color: #39316b; 
-    --body-background: #eaf8fc; 
-    --white: #ffffff; 
-    --primary: #a5e5f8; 
-    --primary-dark: #73cde5; 
-    --primary-hover: #8ddcf1; 
-    --secondary: #ad9df1; 
-    --secondary-dark: #8e7ddd; 
-    --secondary-hover: #c1b5f4; 
-    --light: #f4fbfd; 
-    --border-color: #6e6594; 
-    --border-light: #b8b2cc; 
-    --border-dark: #39316b; 
-    --border-width: 2px; 
-    --border-radius: 12px; 
-    --outline-color: #6d5fb0; 
-    --delete: #e45f6a; 
-    --delete-hover: #d94d59; 
-    --delete-text: #fff; 
-    --header-font-size: 26px; 
-    --title-font-size: 26px; 
-    --body-font-size: 16px; 
-    --button-font-size: 15px; 
-    --category-font-size: 14px; 
-    --page-padding: 28px; 
-    --post-padding: 20px; 
-    --content-padding: 20px 18px; 
-    --button-padding: 11px 18px; 
-    --gap: 24px; 
-} 
-* { 
-    box-sizing: border-box; 
-    border-radius: var(--border-radius); 
-} 
-body { 
-    margin: 0; 
-    font-family: var(--font-family); 
-    color: var(--font-color); 
-    background: var(--body-background); 
-    font-size: var(--body-font-size); 
-} 
-header { 
-    height: 58px; 
-    display: flex; 
-    align-items: center; 
-    padding: 0 28px; 
-    background: var(--primary); 
-    border-bottom: 4px solid var(--border-dark); 
+:root {
+    --font-color: #39316b;
+    --body-background: #eaf8fc;
+    --white: #ffffff;
+    --primary: #a5e5f8;
+    --primary-dark: #73cde5;
+    --primary-hover: #8ddcf1;
+    --secondary: #ad9df1;
+    --secondary-dark: #8e7ddd;
+    --secondary-hover: #c1b5f4;
+    --light: #f4fbfd;
+    --border-color: #6e6594;
+    --border-light: #b8b2cc;
+    --border-dark: #39316b;
+    --border-width: 2px;
+    --border-radius: 12px;
+    --border-radius-small: 10px;
+    --outline-color: #6d5fb0;
+    --label-color: #62598b;
+    --delete: #e45f6a;
+    --delete-hover: #d94d59;
+    --header-font-size: 26px;
+    --title-font-size: 24px;
+    --body-font-size: 16px;
+    --small-font-size: 14px;
+    --page-padding: 28px;
+    --card-padding: 18px;
+    --gap: 20px;
+}
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    font-family: sans-serif;
+    color: var(--font-color);
+    background: var(--body-background);
+    font-size: var(--body-font-size);
+}
+button,
+input,
+select {
+    font-family: inherit;
+}
+header {
+    min-height: 72px;
+    display: flex;
+    align-items: center;
+    padding: 12px 28px;
+    background: var(--primary);
+    border-bottom: 4px solid var(--border-dark);
     border-radius: 0;
-} 
-header h1 { 
-    margin: 0; 
-    font-size: var(--header-font-size); 
-    font-weight: 400; 
-} 
-.page { 
-    display: flex; 
-    align-items: flex-start; 
-    gap: var(--gap); 
-    width: 100%; 
-    padding: var(--page-padding); 
-} 
-.posts { 
-    flex: 1; 
-} 
-.create-post { 
-    flex-shrink: 0; 
-    font-size: 20px; 
-    font-weight: 400; 
-    padding: var(--button-padding); 
-    background: var(--secondary); 
-    color: var(--font-color); 
-    border: 3px solid var(--border-dark); 
-    border-radius: 16px; 
-} 
-.create-post:hover { 
-    background: var(--secondary-hover); 
-} 
-.post { 
-    margin-bottom: 24px; 
-    border: var(--border-width) solid var(--border-color); 
-    border-left: 7px solid var(--secondary-dark); 
-    padding: var(--post-padding); 
-    background: var(--white); 
-} 
-.post-header { 
-    display: flex; 
-    align-items: center; 
-    height: max-content; 
-    padding: 2px 2px 14px; 
-} 
-.post-title { 
-    margin: 0; 
-    font-size: var(--title-font-size); 
-    font-weight: 400; 
-} 
-.category { 
-    margin-left: 16px; 
-    padding: 7px 12px; 
-    font-size: var(--category-font-size); 
-    background: var(--primary); 
-    color: var(--font-color); 
-    border: var(--border-width) solid var(--primary-dark); 
-    border-radius: 18px; 
-} 
-.post-actions { 
-    display: flex; 
-    gap: 10px; 
-    margin-left: auto; 
-} 
-.post-actions form { 
-    margin: 0; 
-} 
-button { 
-    cursor: pointer; 
-    font-family: var(--font-family); 
-} 
-button.delete { 
-    background-color: var(--delete) !important; 
-    color: var(--delete-text); 
-    border-color: var(--delete-hover) !important; 
-} 
-button.delete:hover { 
-    background-color: var(--delete-hover) !important; 
-} 
-.post-actions button { 
-    width: 64px; 
-    height: 36px; 
-    padding: 0; 
-    background: var(--white); 
-    color: var(--font-color); 
-    border: var(--border-width) solid var(--border-color); 
-    border-radius: 10px; 
-    font-size: var(--button-font-size); 
-} 
-.post-actions button:hover { 
-    background: var(--secondary); 
-} 
-.post-info { 
-    display: flex; 
-    gap: 24px; 
-    margin-top: 4px; 
-    padding: 0 2px; 
-    font-size: 14px; 
-    color: #62598b; 
-} 
-.post-content { 
-    margin: 16px 0 0; 
-    padding: var(--content-padding); 
-    background: var(--light); 
-    border: var(--border-width) solid #d0e9ef; 
-    border-left: 5px solid var(--primary-dark); 
-    border-radius: 10px; 
-    font-size: var(--body-font-size); 
-    color: var(--font-color); 
-} 
-.modal-overlay { 
-    position: fixed; 
-    inset: 0; 
-    display: none; 
-    align-items: center; 
-    justify-content: center; 
-    padding: 24px; 
-    background: rgba(57, 49, 107, 0.35); 
-    z-index: 999999; 
-} 
-.modal-overlay.open { 
-    display: flex; 
-} 
-.modal { 
-    width: 745px; 
-    padding: 22px; 
-    background: var(--white); 
-    border: 3px solid var(--border-dark); 
-    border-radius: 16px; 
-    box-shadow: 5px 5px 0 rgba(57, 49, 107, 0.2); 
-} 
-.modal input, 
-.modal select, 
-.modal textarea { 
-    display: block; 
-    width: 100%; 
-    margin: 0 0 10px; 
-    padding: 0 12px; 
-    background: var(--light); 
-    color: var(--font-color); 
-    border: var(--border-width) solid var(--border-light); 
-    border-radius: 9px; 
-    font-family: var(--font-family); 
-    font-size: var(--body-font-size); 
-} 
-.modal input, 
-.modal select { 
-    height: 38px; 
-} 
-.modal textarea { 
-    height: 250px; 
-    resize: none; /* handle appers if not present */ 
-} 
-.modal input:focus, 
-.modal select:focus, 
-.modal textarea:focus { 
-    outline: 2px solid var(--outline-color); 
-    outline-offset: 2px; 
-    border-color: var(--outline-color); 
-} 
-.modal-footer { 
-    display: flex; 
-    justify-content: flex-end; 
-    gap: 10px; 
-    margin-top: 14px; 
-    padding-top: 4px; 
-} 
-.modal-footer button { 
-    min-width: 85px; 
-    height: 39px; 
-    background: var(--white); 
-    color: var(--font-color); 
-    border: var(--border-width) solid var(--border-color); 
-    border-radius: 10px; 
-    font-size: var(--button-font-size); 
-} 
-.modal-footer button:hover { 
-    background: var(--secondary-hover); 
-} 
-/* roughly ipad size */ 
-@media (max-width: 1000px) { 
-    /* so far just moves create post to top */ 
-    .page { 
-        flex-direction: column; 
-    } 
-    .posts { 
-        width: 100%; 
-    } 
-    .create-post { 
-        order: -1; /* needed to move to top */ 
-        align-self: flex-start; 
-    } 
-} 
+}
+.header-content {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+header h1 {
+    margin: 0;
+    font-size: var(--header-font-size);
+    font-weight: 400;
+    white-space: nowrap;
+}
+.page {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: var(--page-padding);
+}
+.search-card {
+    margin-bottom: var(--gap);
+    padding: 20px;
+    background: var(--white);
+    border: var(--border-width) solid var(--border-color);
+    border-left: 6px solid var(--secondary-dark);
+    border-radius: var(--border-radius);
+}
+.search-heading {
+    margin: 0 0 16px;
+    font-size: 22px;
+    font-weight: 400;
+}
+.address-form {
+    display: grid;
+    grid-template-columns: 110px minmax(180px, 1.5fr) minmax(160px, 1fr) 100px 110px;
+    gap: var(--border-radius-small);
+}
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.form-field label {
+    font-size: var(--small-font-size);
+    color: var(--label-color);
+}
+.form-field input,
+.form-field select {
+    width: 100%;
+    height: 40px;
+    padding: 0 11px;
+    background: var(--light);
+    color: var(--font-color);
+    border: var(--border-width) solid var(--border-light);
+    border-radius: 9px;
+    font-size: var(--body-font-size);
+}
+.form-field input:focus,
+.form-field select:focus {
+    outline: 2px solid var(--outline-color);
+    outline-offset: 2px;
+    border-color: var(--outline-color);
+}
+.submit-button {
+    align-self: end;
+    height: 40px;
+    padding: 0 18px;
+    background: var(--secondary);
+    color: var(--font-color);
+    border: 2px solid var(--border-dark);
+    border-radius: var(--border-radius-small);
+    font-size: 15px;
+    cursor: pointer;
+}
+.submit-button:hover {
+    background: var(--secondary-hover);
+}
+.error {
+    margin-bottom: var(--gap);
+    padding: 13px 16px;
+    background: #fff1f2;
+    color: #9c303c;
+    border: 2px solid var(--delete);
+    border-left: 6px solid var(--delete);
+    border-radius: var(--border-radius);
+}
+.location {
+    margin-bottom: var(--gap);
+    color: var(--label-color);
+    font-size: var(--small-font-size);
+}
+.location strong {
+    color: var(--font-color);
+    font-size: 17px;
+}
+.dashboard {
+    display: grid;
+    grid-template-columns: 210px 1fr;
+    gap: var(--gap);
+    align-items: start;
+}
+.category-selector {
+    padding: 16px;
+    background: var(--white);
+    border: var(--border-width) solid var(--border-color);
+    border-radius: var(--border-radius);
+}
+.category-selector-title {
+    margin: 0 0 12px;
+    font-size: 18px;
+    font-weight: 400;
+}
+.category-option {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 9px;
+    padding: 8px 9px;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+.category-option:hover {
+    background: var(--light);
+}
+.category-option input {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--secondary-dark);
+    cursor: pointer;
+}
+.category-option span {
+    font-size: var(--body-font-size);
+}
+.results {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--gap);
+}
+.info-section {
+    min-width: 0;
+    padding: var(--card-padding);
+    background: var(--white);
+    border: var(--border-width) solid var(--border-color);
+    border-left: 6px solid var(--primary-dark);
+    border-radius: var(--border-radius);
+}
+.info-section h2 {
+    margin: 0 0 15px;
+    font-size: var(--title-font-size);
+    font-weight: 400;
+}
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--border-radius-small);
+}
+.info-card {
+    min-width: 0;
+    padding: 12px;
+    background: var(--light);
+    border: var(--border-width) solid #d0e9ef; /* dont rly need a var for 2 things */
+    border-radius: var(--border-radius-small);
+}
+.card-label {
+    margin-bottom: 5px;
+    color: var(--label-color);
+    font-size: var(--small-font-size);
+}
+.card-value {
+    color: var(--font-color);
+    font-size: 18px;
+    overflow-wrap: anywhere;
+}
+.alert-card {
+    background: #fff7f7;
+    border-color: #e7b5ba;
+    border-left: 4px solid var(--delete);
+}
+.no-alerts {
+    grid-column: 1 / -1;
+    padding: 15px;
+    background: var(--light);
+    color: var(--label-color);
+    border: var(--border-width) solid #d0e9ef;
+    border-radius: var(--border-radius-small);
+}
+.weather-summary {
+    grid-column: 1 / -1;
+    padding: 16px;
+    background: var(--primary);
+    border: 2px solid var(--primary-dark);
+    border-radius: var(--border-radius-small);
+}
+.weather-summary .card-value {
+    font-size: 28px;
+}
+/* roughly ipad size */
+@media (max-width: 1000px) {
+    /* movee checkboxes to top; addr gets 2 cols */
+    .address-form {
+        grid-template-columns: 1fr 2fr;
+        width: 100%;
+    }
+    .submit-button {
+        width: 100%;
+    }
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+    .category-selector {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media (max-width: 650px) {
+    /* make everything single cols as wide as screen (except checkboxes are two cols */
+    .address-form {
+        grid-template-columns: 1fr;
+    }
+    .submit-button {
+        width: 100%;
+    }
+    .category-selector {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .results {
+        grid-template-columns: 1fr;
+    }
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+}
