@@ -1,4 +1,4 @@
-<!-- formatter STILL hates EJS, do later manually -->
+<!-- DO NOT USE VSCODE FORMATTER OR YOULL HAVE TO FIX IT AGAIN -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -84,122 +84,130 @@
             <button type="submit" class="submit-button">Submit</button>
         </form>
     </header>
+
     <% if (error) { %>
         <div class="error">
-            <%= error %>
+            <%= error %> <!-- used specifically for API errors not like 502 -->
         </div>
-        <% } %>
-            <% if (sections) { %>
-                <main class="dashboard">
-                    <aside class="category-selector">
-                        <label class="category-option">
-                            <input type="checkbox" checked data-section="weather">
-                            <span class="checkbox"></span>
-                            <span>Weather</span>
-                        </label>
-                        <label class="category-option">
-                            <input type="checkbox" checked data-section="solar">
-                            <span class="checkbox"></span>
-                            <span>Solar</span>
-                        </label>
-                        <label class="category-option">
-                            <input type="checkbox" checked data-section="soil">
-                            <span class="checkbox"></span>
-                            <span>Soil</span>
-                        </label>
-                        <label class="category-option">
-                            <input type="checkbox" checked data-section="alerts">
-                            <span class="checkbox"></span>
-                            <span>Alerts</span>
-                        </label>
-                    </aside>
-                    <section class="results">
-                        <% if (sections.weather) { %>
-                            <section class="info-section" data-section="weather">
-                                <h2>Weather</h2>
-                                <div class="info-grid">
-                                    <% sections.weather.forEach(item=> { %>
-                                        <div class="info-card">
-                                            <div class="card-label">
-                                                <%= item.label %>
-                                            </div>
-                                            <div class="card-value">
-                                                <%= item.value %>
-                                            </div>
-                                        </div>
-                                        <% }) %>
+    <% } %>
+
+    <% if (sections) { %>
+        <main class="dashboard">
+            <aside class="category-selector">
+                <label class="category-option">
+                    <input type="checkbox" checked data-section="weather">
+                    <span class="checkbox"></span>
+                    <span>Weather</span>
+                </label>
+                <label class="category-option">
+                    <input type="checkbox" checked data-section="solar">
+                    <span class="checkbox"></span>
+                    <span>Solar</span>
+                </label>
+                <label class="category-option">
+                    <input type="checkbox" checked data-section="soil">
+                    <span class="checkbox"></span>
+                    <span>Soil</span>
+                </label>
+                <label class="category-option">
+                    <input type="checkbox" checked data-section="alerts">
+                    <span class="checkbox"></span>
+                    <span>Alerts</span>
+                </label>
+            </aside>
+
+            <section class="results">
+                <% if (sections.weather) { %>
+                    <section class="info-section" data-section="weather">
+                        <h2>Weather</h2>
+                        <div class="info-grid">
+                            <% sections.weather.forEach(item=> { %>
+                                <div class="info-card">
+                                    <div class="card-label">
+                                        <%= item.label %>
+                                    </div>
+                                    <div class="card-value">
+                                        <%= item.value %>
+                                    </div>
                                 </div>
-                            </section>
-                            <% } %>
-                                <% if (sections.solar) { %>
-                                    <section class="info-section" data-section="solar">
-                                        <h2>Solar</h2>
-                                        <div class="info-grid">
-                                            <% sections.solar.forEach(item=> { %>
-                                                <div class="info-card">
-                                                    <div class="card-label">
-                                                        <%= item.label %>
-                                                    </div>
-                                                    <div class="card-value">
-                                                        <%= item.value %>
-                                                    </div>
-                                                </div>
-                                                <% }) %>
-                                        </div>
-                                    </section>
-                                    <% } %>
-                                        <% if (sections.soil) { %>
-                                            <section class="info-section" data-section="soil">
-                                                <h2>Soil</h2>
-                                                <div class="info-grid">
-                                                    <% sections.soil.forEach(item=> { %>
-                                                        <div class="info-card">
-                                                            <div class="card-label">
-                                                                <%= item.label %>
-                                                            </div>
-                                                            <div class="card-value">
-                                                                <%= item.value %>
-                                                            </div>
-                                                        </div>
-                                                        <% }) %>
-                                                </div>
-                                            </section>
-                                            <% } %>
-                                                <% if (sections.alerts) { %>
-                                                    <section class="info-section" data-section="alerts">
-                                                        <h2>Alerts</h2>
-                                                        <div class="info-grid">
-                                                            <% if (sections.alerts.length===0) { %>
-                                                                <div class="no-alerts">No active official alerts.</div>
-                                                                <% } %>
-                                                                    <% sections.alerts.forEach(item=> { %>
-                                                                        <div class="info-card alert-card">
-                                                                            <div class="card-label">
-                                                                                <%= item.label %>
-                                                                            </div>
-                                                                            <div class="card-value">
-                                                                                <%= item.value %>
-                                                                            </div>
-                                                                        </div>
-                                                                        <% }) %>
-                                                        </div>
-                                                    </section>
-                                                    <% } %>
+                            <% }) %>
+                        </div>
                     </section>
-                </main>
                 <% } %>
-                    <script>
-                        const categoryInputs = document.querySelectorAll(".category-option input");
-                        categoryInputs.forEach(input => {
-                            input.addEventListener("change", () => {
-                                const sectionName = input.dataset.section;
-                                const sections = document.querySelectorAll(`section[data-section="${sectionName}"]`); // had to add section or it hid checkbox too
-                                sections.forEach(section => {
-                                    section.style.display = input.checked ? "" : "none";
-                                });
-                            });
-                        });
-                    </script>
+
+                <% if (sections.solar) { %>
+                    <section class="info-section" data-section="solar">
+                        <h2>Solar</h2>
+                        <div class="info-grid">
+                            <% sections.solar.forEach(item=> { %>
+                                <div class="info-card">
+                                    <div class="card-label">
+                                        <%= item.label %>
+                                    </div>
+                                    <div class="card-value">
+                                        <%= item.value %>
+                                    </div>
+                                </div>
+                            <% }) %>
+                        </div>
+                    </section>
+                <% } %>
+
+                <% if (sections.soil) { %>
+                    <section class="info-section" data-section="soil">
+                        <h2>Soil</h2>
+                        <div class="info-grid">
+                            <% sections.soil.forEach(item=> { %>
+                                <div class="info-card">
+                                    <div class="card-label">
+                                        <%= item.label %>
+                                    </div>
+                                    <div class="card-value">
+                                        <%= item.value %>
+                                    </div>
+                                </div>
+                            <% }) %>
+                        </div>
+                    </section>
+                <% } %>
+
+                <% if (sections.alerts) { %>
+                    <section class="info-section" data-section="alerts">
+                        <h2>Alerts</h2>
+                        <div class="info-grid">
+                            <% if (sections.alerts.length===0) { %>
+                                <div class="no-alerts">No active official alerts.</div>
+                            <% } %>
+
+                            <% sections.alerts.forEach(item=> { %>
+                                <div class="info-card alert-card">
+                                    <div class="card-label">
+                                        <%= item.label %>
+                                    </div>
+                                    <div class="card-value">
+                                        <%= item.value %>
+                                    </div>
+                                </div>
+                            <% }) %>
+                        </div>
+                    </section>
+                <% } %>
+            </section>
+        </main>
+    <% } %>
+
+    <script>
+        const categoryInputs = document.querySelectorAll(".category-option input");
+        categoryInputs.forEach(input => {
+            input.addEventListener("change", () => {
+                const sectionName = input.dataset.section;
+                const sections = document.querySelectorAll(`section[data-section="${sectionName}"]`); // had to add section or it hid checkbox too
+                sections.forEach(section => {
+                    section.style.display = input.checked ? "" : "none";
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

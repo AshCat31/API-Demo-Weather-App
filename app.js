@@ -7,7 +7,7 @@ app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 const cache = new Map(); // just gonna ues mem, not json
-const CACHE_TIME = 10 * 60 * 1000; // 10 min, could raise but this is unlikely to be run that much
+const CACHE_TIME = 20 * 60 * 1000; // raised to 20 min. mb not the most accurate but better for caching
 
 function getCached(key) {
     const item = cache.get(key);
@@ -50,49 +50,10 @@ async function fetchOpenMeteoWeatherSolar(lat, long) {
             temperature_unit: "fahrenheit",
             wind_speed_unit: "mph",
             precipitation_unit: "inch",
-            current: [
-                "temperature_2m",
-                "relative_humidity_2m",
-                "apparent_temperature",
-                "precipitation",
-                "rain",
-                "showers",
-                "snowfall",
-                "weather_code",
-                "cloud_cover",
-                "pressure_msl",
-                "surface_pressure",
-                "wind_speed_10m",
-                "wind_direction_10m",
-                "wind_gusts_10m"
-            ].join(","),
-            daily: [
-                "weather_code",
-                "temperature_2m_max",
-                "temperature_2m_min",
-                "apparent_temperature_max",
-                "apparent_temperature_min",
-                "sunrise",
-                "sunset",
-                "daylight_duration",
-                "sunshine_duration",
-                "precipitation_sum",
-                "rain_sum",
-                "showers_sum",
-                "snowfall_sum",
-                "precipitation_probability_max",
-                "wind_speed_10m_max",
-                "wind_gusts_10m_max",
-                "wind_direction_10m_dominant"
-            ].join(","),
-            hourly: [
-                "shortwave_radiation",
-                "direct_radiation",
-                "diffuse_radiation",
-                "direct_normal_irradiance"
-            ].join(","),
-            timezone: "auto",
-            forecast_days: 2
+            current: ["temperature_2m", "relative_humidity_2m", "apparent_temperature", "precipitation", "cloud_cover", "pressure_msl",
+                "wind_speed_10m", "wind_gusts_10m"].join(","),
+            daily: ["sunrise", "sunset", "daylight_duration", "sunshine_duration"].join(","),
+            timezone: "auto"
         }
     }
     );
@@ -106,8 +67,7 @@ async function fetchOpenMeteoSoil(lat, long) {
     const response = await axios.get("https://api.open-meteo.com/v1/forecast", {
         params: {
             latitude: lat, longitude: long, temperature_unit: "fahrenheit", precipitation_unit: "inch",
-            hourly: ["soil_temperature_0cm", "soil_temperature_6cm", "soil_temperature_18cm", "soil_temperature_54cm", "soil_moisture_0_to_1cm",
-                "soil_moisture_1_to_3cm", "soil_moisture_3_to_9cm", "soil_moisture_9_to_27cm", "soil_moisture_27_to_81cm"].join(","),
+            hourly: ["soil_temperature_0cm", "soil_temperature_6cm", "soil_moisture_0_to_1cm"].join(","),
             timezone: "auto", forecast_days: 2
         }
     });
@@ -194,7 +154,7 @@ function extractSections(data) {
                 value: `${soil.hourly.soil_temperature_0cm[0]} °F`
             },
             {
-                label: "6cm Soil Temperature", //6cm~=2.3in but thats a rly awkward number. decide: change or no?
+                label: "2.4in Soil Temperature", //6cm~=2.4in
                 value: `${soil.hourly.soil_temperature_6cm[0]} °F`
             },
             {
@@ -222,7 +182,7 @@ app.post("/location", async (req, res) => {
         const location = await fetchLatLong(streetNumber, streetName, city, state);
         const data = await fetchAPI(location.lat, location.long);
         const sections = extractSections(data);
-        res.render("index", { location, sections, error: null });
+        res.render("index", { sections, error: null });
     } catch (error) {
         console.error(error);
         res.render("index", { location: null, sections: null, error: "Unable to retrieve information for that address." });
